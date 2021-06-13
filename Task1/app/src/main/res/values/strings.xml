@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Zadanie 1</string>
+    <string name="logo">Полученные данные!</string>
+    <string name="logo2">Получить данные!</string>
+    <string name="user">UserId</string>
+    <string name="id">Id</string>
+    <string name="title">Title</string>
+    <string name="Completed">Completed</string>
+</resources>
