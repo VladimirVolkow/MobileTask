@@ -18,49 +18,46 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class MainActivity extends AppCompatActivity {
-
-    private TextView textView;
-
-    private EditText editTextTextPersonName11;
-    private EditText editTextTextPersonName21;
-    private EditText editTextTextPersonName31;
-    private Switch switch11;
-    private int r;
+    private TextView textViewReceiveBefore;
+    private EditText userIdReceiveBefore;
+    private EditText idReceiveBefore;
+    private EditText titleReceiveBefore;
+    private Switch completedReceiveBefore;
+    private int enumeration;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        editTextTextPersonName11=findViewById(R.id.editTextTextPersonName1);
-        editTextTextPersonName21=findViewById(R.id.editTextTextPersonName2);
-        editTextTextPersonName31=findViewById(R.id.editTextTextPersonName3);
-        switch11=findViewById(R.id.switch1);
-        textView=findViewById(R.id.textView3);
-        r=1;
+        userIdReceiveBefore=findViewById(R.id.userIdReceive);
+        idReceiveBefore=findViewById(R.id.idReceive);
+        titleReceiveBefore=findViewById(R.id.titleReceive);
+        completedReceiveBefore=findViewById(R.id.completedReceive);
+        textViewReceiveBefore=findViewById(R.id.textViewReceive);
+        enumeration=1;
     }
     public void infoRequest (View view){
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url ="https://jsonplaceholder.typicode.com/todos/"+String.valueOf(r);
+        String url ="https://jsonplaceholder.typicode.com/todos/"+String.valueOf(enumeration);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         GsonBuilder builder = new GsonBuilder();
                         Gson gson=builder.create();
-                        JsonD jsonD8=gson.fromJson(response,JsonD.class);
-                        editTextTextPersonName11.setText(String.valueOf(jsonD8.userId));
-                        editTextTextPersonName21.setText(String.valueOf(jsonD8.id));
-                        editTextTextPersonName31.setText(jsonD8.title);
-                        switch11.setChecked(jsonD8.completed);
-                        textView.setText(response);
-                        r++;
+                        Deserialize deserialize =gson.fromJson(response, Deserialize.class);
+                        userIdReceiveBefore.setText(String.valueOf(deserialize.userId));
+                        idReceiveBefore.setText(String.valueOf(deserialize.id));
+                        titleReceiveBefore.setText(deserialize.title);
+                        completedReceiveBefore.setChecked(deserialize.completed);
+                        textViewReceiveBefore.setText(response);
+                        enumeration++;
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work");
+                textViewReceiveBefore.setText("That didn't work");
             }
         });
         queue.add(stringRequest);
     }
-
 }
