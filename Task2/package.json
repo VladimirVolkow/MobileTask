@@ -1,0 +1,28 @@
+{
+  "name": "zadanie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "lint": "eslint .",
+    "android:prod": "npx react-native run-android --variant=release",
+    "ios:prod": "react-native run-ios --configuration Release"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@react-native-community/cli": "^5.0.1",
+    "axios": "^0.21.1",
+    "chalk": "^4.1.1",
+    "es6-promise": "^4.2.8",
+    "isomorphic-fetch": "^3.0.0",
+    "moment": "^2.29.1",
+    "node-fetch": "^2.6.1",
+    "react-native": "^0.64.2",
+    "react-native-eject": "^0.1.2"
+  }
+}
